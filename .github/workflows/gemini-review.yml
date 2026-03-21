@@ -1,0 +1,21 @@
+name: Gemini Code Review
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+
+jobs:
+  review:
+    runs-on: self-hosted
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Run Gemini CLI Review
+        uses: google-github-actions/run-gemini-cli@v0
+        with:
+          prompt: "Review the changes in this pull request. Focus on shell script security, readability, and configuration best practices. Provide actionable feedback as comments."
+          gemini_api_key: ${{ secrets.GEMINI_API_KEY }}
+          gemini_model: "gemini-1.5-pro"
