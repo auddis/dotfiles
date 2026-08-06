@@ -2,9 +2,9 @@ name: Lint Code Base
 
 on:
   push:
-    branches: [main, master]
+    branches: [main, master, cmp-rewrite]
   pull_request:
-    branches: [main, master]
+    branches: [main, master, cmp-rewrite]
 
 permissions:
   contents: read
