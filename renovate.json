@@ -2,5 +2,75 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
     "config:recommended"
+  ],
+  "dependencyDashboard": true,
+  "automerge": true,
+  "automergeType": "pr",
+  "platformAutomerge": true,
+  "packageRules": [
+    {
+      "description": "Group non-major devDependencies",
+      "matchDepTypes": [
+        "devDependencies"
+      ],
+      "matchUpdateTypes": [
+        "minor",
+        "patch"
+      ],
+      "groupName": "devDependencies (non-major)",
+      "automerge": true
+    },
+    {
+      "description": "Group GitHub Actions workflow updates",
+      "matchManagers": [
+        "github-actions"
+      ],
+      "groupName": "GitHub Actions Workflows & Linters",
+      "automerge": true
+    },
+    {
+      "description": "Group JS/TS tooling & linters",
+      "matchPackageNames": [
+        "eslint*",
+        "prettier*",
+        "typescript*",
+        "@types/*"
+      ],
+      "groupName": "JavaScript Tooling & Linters",
+      "automerge": true
+    },
+    {
+      "description": "Group Docker & Container image updates",
+      "matchManagers": [
+        "docker-compose",
+        "dockerfile"
+      ],
+      "groupName": "Container Images & Docker Stacks",
+      "automerge": true
+    },
+    {
+      "description": "Group Python dependencies",
+      "matchManagers": [
+        "pip_requirements",
+        "poetry",
+        "pipenv",
+        "pep621"
+      ],
+      "groupName": "Python Dependencies",
+      "automerge": true
+    },
+    {
+      "description": "Auto-merge minor and patch dependency updates",
+      "matchUpdateTypes": [
+        "minor",
+        "patch",
+        "pin",
+        "digest",
+        "lockFileMaintenance"
+      ],
+      "automerge": true,
+      "automergeType": "pr",
+      "platformAutomerge": true
+    }
   ]
 }
